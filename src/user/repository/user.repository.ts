@@ -3,7 +3,7 @@ import { User } from "../entities/user.entity.js";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 
-export interface IProjectrepository {
+export interface IUserRepository {
     create(project: User): Promise<void>;
     update(project: User): Promise<void>;
     findAll(): Promise<User[]>
@@ -11,7 +11,7 @@ export interface IProjectrepository {
 }
 
 @Injectable()
-export class ProjectTypeOrmRepository implements IProjectrepository {
+export class UserTypeOrmRepository implements IUserRepository {
 
     constructor(
         @InjectRepository(User)
