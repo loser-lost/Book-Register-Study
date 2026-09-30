@@ -35,4 +35,21 @@ export class User {
         this.id = id ?? crypto.randomUUID();
     }
 
+    //Refatorar posteriormente
+    updateName(name: string) {
+        if (name) {
+            this.name = name;
+        }
+    }
+    updateEmail(email: string) {
+        if (email) {
+            this.email = email;
+        }
+    }
+    updateCreated_at(created_at: Date) {
+        if (created_at) {
+            this.created_at = created_at;
+        }
+    }
+
 }
