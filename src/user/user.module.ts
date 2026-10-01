@@ -7,6 +7,7 @@ import { User } from './entities/user.entity.js';
 import { FindAllUsersUseCase } from './use-case/find-all-user.use-case.js';
 import { FindOneUsersUseCase } from './use-case/find-one-user.use-case.js';
 import { EditUserUseCase } from './use-case/edit-user.use-case.js';
+import { DeleteUserUseCase } from './use-case/delete-user.use-case.js';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])], // Importa o repositório nativo do TypeORM
@@ -16,6 +17,7 @@ import { EditUserUseCase } from './use-case/edit-user.use-case.js';
     FindAllUsersUseCase,
     FindOneUsersUseCase,
     EditUserUseCase,
+    DeleteUserUseCase,
     UserTypeOrmRepository, // Registra a implementação concreta
     {
       provide: 'IUserRepository', // Token idêntico ao do UseCase

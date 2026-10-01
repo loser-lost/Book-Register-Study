@@ -18,12 +18,26 @@ export class User {
     @Column()
     created_at: Date;
 
-    
+    @Column({ default: false })
+    deleted: boolean;
+
+    /*
+    constructor(props?: Partial>,
+    id?: string
+  ) {
+    if (props) {
+      Object.assign(this, props);
+    }
+    this.id = id ?? this.id ?? crypto.randomUUID();
+    this.deleted = this.deleted ?? false;
+  }
+    */
     constructor(props: {
         name: string,
         email: string,
         password: string,
         created_at: Date,
+        deleted: boolean,
     }, id?: string,
 
     ) {
@@ -33,6 +47,7 @@ export class User {
         
         // Define a ID se não for gerada/passada
         this.id = id ?? crypto.randomUUID();
+        
     }
 
     //Refatorar posteriormente
@@ -50,6 +65,9 @@ export class User {
         if (created_at) {
             this.created_at = created_at;
         }
+    }
+    markAsDeleted(deleted: boolean) {
+        this.deleted = deleted;
     }
 
 }

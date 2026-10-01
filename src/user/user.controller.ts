@@ -5,6 +5,7 @@ import { FindAllUsersUseCase } from './use-case/find-all-user.use-case.js';
 import { FindOneUsersUseCase } from './use-case/find-one-user.use-case.js';
 import { EditUserUseCase } from './use-case/edit-user.use-case.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
+import { DeleteUserUseCase } from './use-case/delete-user.use-case.js';
 
 
 @Controller('user')
@@ -14,6 +15,7 @@ export class UserController {
     private readonly findAllUserUseCase: FindAllUsersUseCase,
     private readonly findOneUsersUseCase: FindOneUsersUseCase,
     private readonly editUserUseCase: EditUserUseCase,
+    private readonly deleteUserUseCase: DeleteUserUseCase,
   ) {}
   
   @Post()
@@ -35,9 +37,9 @@ export class UserController {
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.editUserUseCase.execute(id, updateUserDto);
   }
-/*
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
-  }*/
+
+  @Patch(':id/delete')
+  UpdateDeleteUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.deleteUserUseCase.execute(id, updateUserDto);
+  }
 }

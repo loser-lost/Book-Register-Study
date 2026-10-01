@@ -3,4 +3,5 @@ export class CreateUserDto {
     email: string;
     password: string;
     created_at: Date;
+    deleted: boolean
 }

@@ -22,7 +22,7 @@ export class UserTypeOrmRepository implements IUserRepository {
         await this.typeOrmRepo.save(user)
     }
     async update(user: User): Promise<void> {
-        await this.typeOrmRepo.update(user.id, user)
+        await this.typeOrmRepo.save(user);
     }
     findAll(): Promise<User[]> {
         return this.typeOrmRepo.find();
