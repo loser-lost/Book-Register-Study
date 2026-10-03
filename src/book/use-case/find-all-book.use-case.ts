@@ -5,16 +5,14 @@ import { Book } from "../entities/book.entity.js";
 
 
 @Injectable()
-export class CreateBookUseCase {
+export class FindAllBookUseCase {
 
     constructor(
         @Inject('IBookRepository')
         private readonly bookRepo: IBookRepository,
     ){}
 
-    async execute(input: CreateBookDto){
-        const book = new Book(input)
-        await this.bookRepo.create(book);
-        return book;
+    execute(){
+        return this.bookRepo.findAll();
     }
 }

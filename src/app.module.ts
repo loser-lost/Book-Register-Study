@@ -6,6 +6,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module.js';
 import { User } from './user/entities/user.entity.js';
 import { BookModule } from './book/book.module.js';
+import { Book } from './book/entities/book.entity.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -15,7 +16,10 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         useFactory: (): TypeOrmModuleOptions => ({
           type: 'better-sqlite3',
           database: ':memory:',
-          entities: [User],
+          entities: [
+            User,
+            Book
+          ],
           synchronize: true, // Development only
         }),
       }),
