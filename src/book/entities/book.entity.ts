@@ -60,5 +60,8 @@ export class Book {
     markAsDeleted(deleted: boolean){
         this.deleted = deleted;
     }
+    markAsAvaliableBorrowed(is_available: boolean){
+        this.is_available = is_available;
+    }
 
 }

@@ -23,5 +23,6 @@ import { DeleteBookUseCase } from './use-case/edit-book.use-case copy.js';
         useClass: BookTypeOrmRepository, // Usa useClass em vez de useExisting
     }
   ],
+  exports: ['IBookRepository']
 })
 export class BookModule {}

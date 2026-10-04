@@ -7,6 +7,8 @@ import { UserModule } from './user/user.module.js';
 import { User } from './user/entities/user.entity.js';
 import { BookModule } from './book/book.module.js';
 import { Book } from './book/entities/book.entity.js';
+import { BorrowModule } from './borrow/borrow.module.js';
+import { Borrow } from './borrow/entities/borrow.entity.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -18,13 +20,15 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
           database: ':memory:',
           entities: [
             User,
-            Book
+            Book,
+            Borrow
           ],
           synchronize: true, // Development only
         }),
       }),
     UserModule,
     BookModule,
+    BorrowModule,
     ],
   controllers: [AppController],
   providers: [AppService],

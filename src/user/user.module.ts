@@ -23,6 +23,8 @@ import { DeleteUserUseCase } from './use-case/delete-user.use-case.js';
       provide: 'IUserRepository', // Token idêntico ao do UseCase
       useClass: UserTypeOrmRepository, // Usa useClass em vez de useExisting
     },
+    
   ],
+  exports: ['IUserRepository']
 })
 export class UserModule {}
