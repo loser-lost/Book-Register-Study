@@ -15,8 +15,8 @@ export class Borrow {
     @Column({ type: "varchar", length: 36 })
     user_id: string;
 
-    @ManyToMany(()=> Book, { onDelete: "CASCADE"})
-    @JoinColumn({ name: "book_id"})
+    @ManyToOne(() => Book, { onDelete: "CASCADE" })
+    @JoinColumn({ name: "book_id" })
     book: Book;
 
     @Column()
@@ -42,10 +42,12 @@ export class Borrow {
         this.id = id ?? crypto.randomUUID();
     }
 
-    static create( user_id: string, book_id: string): Borrow {
+    static create( user_id: string, book_id: string,book: Book): Borrow {
         if (!user_id || !book_id){
             throw new Error("User ID and Book ID are required to create a Borrow record.");
         }
+
+        book.markAsBorrowed();
 
         return new Borrow({
             user_id,
@@ -55,14 +57,17 @@ export class Borrow {
         });
     }
 
-    returnBook(returnedAt?: Date){
+    returnBook(returnedAt?: Date, book?: Book) {
         if (this.returned_at !== null) {
             throw new Error("This book has already been returned.");
         }
         this.returned_at = returnedAt ?? new Date();
+        if (book) {
+            book.markAsReturned();
+        }
     }
 
-    isCurretlyBorrowed(): boolean {
+    isCurrentlyBorrowed(): boolean {
         return this.returned_at === null;
     }
 }

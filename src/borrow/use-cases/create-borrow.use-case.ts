@@ -28,9 +28,15 @@ export class CreateBorrowUseCase {
         if (!book) {
             throw new NotFoundException('Book not found');
         }
-        const borrow = Borrow.create(input.user_id, input.book_id)
 
+
+        //const borrow = Borrow.create(input.user_id, input.book_id)
+
+        // O método Borrow.create já altera a propriedade book.available para false
+        const borrow = Borrow.create(input.user_id, input.book_id, book);
         await this.borrowRepo.create(borrow);
+        await this.bookRepo.update(book);
+        
         return borrow;
     }
 }

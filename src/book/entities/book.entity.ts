@@ -60,8 +60,16 @@ export class Book {
     markAsDeleted(deleted: boolean){
         this.deleted = deleted;
     }
-    markAsAvaliableBorrowed(is_available: boolean){
-        this.is_available = is_available;
+    
+    markAsBorrowed() {
+        if (!this.is_available) {
+            throw new Error("Este livro já está emprestado.");
+        }
+        this.is_available = false;
+    }
+
+    markAsReturned() {
+        this.is_available = true;
     }
 
 }
